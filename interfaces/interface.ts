@@ -40,3 +40,62 @@ const shoes: Product = {
 		return newPrice;
 	},
 };
+
+// _______________________________________________________________
+interface Dog {
+	name: string;
+	age: number;
+}
+
+// We can extend interface
+interface Dog {
+	breed: string;
+	bark(): string;
+}
+
+const dog: Dog = {
+	name: "Nero",
+	age: 15,
+	breed: "German Shepherd",
+	bark() {
+		return `Woof`;
+	},
+};
+
+// We can inherit interface like classes also
+interface ServiceDog extends Dog {
+	job: "Drug Dog" | "Bomb Dog" | "Guide Dog";
+}
+
+const chewy: ServiceDog = {
+	name: "Chewy",
+	age: 30,
+	breed: "Terrier",
+	bark() {
+		return "Woof Woof";
+	},
+	job: "Guide Dog",
+};
+
+// We can inherit multiple as well
+interface Human {
+	name: string;
+}
+
+interface Employee {
+	readonly id: number;
+	email: string;
+}
+
+interface Engineer extends Human, Employee {
+	job: string;
+	languages: string[];
+}
+
+const lazar: Engineer = {
+	id: 404,
+	name: "Lazar Stojanovic",
+	email: "test@gmail.com",
+	job: "Full-stack Developer",
+	languages: ["Python", "JavaScript"],
+};
