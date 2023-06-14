@@ -1,62 +1,32 @@
+"use strict";
+/*
 class Player {
-	static description = "Player In Our Game"; // Exist only on main Player class
-	#score = 0; // Private field
-	#numLives = 10;
+    private isAdmin = false;
+    public readonly first: string;
+    public readonly last: string;
+    public score = 0;
 
-	constructor(first, last) {
-		this.first = first;
-		this.last = last;
-	}
+    constructor(first: string, last: string) {
+        this.first = first;
+        this.last = last;
+    }
 
-	// Some dumb example
-	static randomPlayer() {
-		return new Player("Random", "Random");
-	}
-
-	get fullName() {
-		return `${this.first} ${this.last}`;
-	}
-
-	set fullName(newName) {
-		const [first, last] = newName.split(" ");
-		this.first = first;
-		this.last = last;
-	}
-
-	get score() {
-		return this.#score;
-	}
-
-	set score(newScore) {
-		if (newScore < 0) {
-			throw new Error("Score must be positive!");
-		}
-		this.#score = newScore;
-	}
-
-	taunt() {
-		console.log(`${this.first} is taunting!!!`);
-	}
-
-	loseLives() {
-		this.numLives--;
-		return this.numLives;
-	}
-
-	// Private method
-	#secret() {
-		return "Secret";
-	}
+    private resetScore() {
+        this.score = 0;
+    }
 }
-
-class SuperPlayer extends Player {
-	isAdmin = true;
-	constructor(first, last, powers) {
-		super(first, last);
-		this.powers = powers;
-	}
+*/
+// Shortcut version
+class Player {
+    first;
+    last;
+    score;
+    // private score = 0;
+    isAdmin = false;
+    constructor(first, last, score) {
+        this.first = first;
+        this.last = last;
+        this.score = score;
+    }
 }
-
-const admin = new SuperPlayer("Mr", "Admin", "Flying");
-const playerOne = new Player("Lazar", "Stojanovic");
-const playerTwo = new Player("John", "Doe");
+const playerOne = new Player("John", "Doggy");
