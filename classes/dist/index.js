@@ -7,6 +7,27 @@ class Player {
 		this.last = last;
 	}
 
+	get fullName() {
+		return `${this.first} ${this.last}`;
+	}
+
+	set fullName(newName) {
+		const [first, last] = newName.split(" ");
+		this.first = first;
+		this.last = last;
+	}
+
+	get score() {
+		return this.#score;
+	}
+
+	set score(newScore) {
+		if (newScore < 0) {
+			throw new Error("Score must be positive!");
+		}
+		this.#score = newScore;
+	}
+
 	taunt() {
 		console.log(`${this.first} is taunting!!!`);
 	}
@@ -14,14 +35,6 @@ class Player {
 	loseLives() {
 		this.numLives--;
 		return this.numLives;
-	}
-
-	getScore() {
-		return this.#score;
-	}
-
-	updateScore(newScore) {
-		this.#score = newScore;
 	}
 
 	// Private method
