@@ -74,6 +74,38 @@ class Jacket implements Colorful, Printable {
 	}
 }
 
-const playerOne = new Player("John", "Doggy");
-const bikeOne = new Bike("Red");
-const jacketOne = new Jacket("Nike", "Blue");
+// Abstract Class kinda like an interface
+abstract class Employee {
+	constructor(public first: string, public last: string) {}
+
+	abstract getPay(): number;
+}
+
+class FullTimeEmployee extends Employee {
+	constructor(first: string, last: string, private salary: number) {
+		super(first, last);
+	}
+
+	getPay(): number {
+		return this.salary;
+	}
+}
+
+class PartTimeEmployee extends Employee {
+	constructor(
+		first: string,
+		last: string,
+		private hourlyRate: number,
+		private hoursWorked: number
+	) {
+		super(first, last);
+	}
+
+	getPay(): number {
+		const salary = this.hoursWorked * this.hourlyRate;
+		return salary;
+	}
+}
+
+const fullTime = new FullTimeEmployee("John", "Doe", 95000);
+const partTime = new PartTimeEmployee("Betty", "Dickens", 24, 1100);

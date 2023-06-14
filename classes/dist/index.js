@@ -68,6 +68,37 @@ class Jacket {
         console.log(`${this.color} ${this.brand.toLowerCase()} jacket printed!`);
     }
 }
-const playerOne = new Player("John", "Doggy");
-const bikeOne = new Bike("Red");
-const jacketOne = new Jacket("Nike", "Blue");
+// Abstract Class kinda like an interface
+class Employee {
+    first;
+    last;
+    constructor(first, last) {
+        this.first = first;
+        this.last = last;
+    }
+}
+class FullTimeEmployee extends Employee {
+    salary;
+    constructor(first, last, salary) {
+        super(first, last);
+        this.salary = salary;
+    }
+    getPay() {
+        return this.salary;
+    }
+}
+class PartTimeEmployee extends Employee {
+    hourlyRate;
+    hoursWorked;
+    constructor(first, last, hourlyRate, hoursWorked) {
+        super(first, last);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+    getPay() {
+        const salary = this.hoursWorked * this.hourlyRate;
+        return salary;
+    }
+}
+const fullTime = new FullTimeEmployee("John", "Doe", 95000);
+const partTime = new PartTimeEmployee("Betty", "Dickens", 24, 1100);
