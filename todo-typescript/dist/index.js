@@ -18,6 +18,9 @@ function readTodos() {
     }
     return JSON.parse(todosJSON);
 }
+function saveTodos() {
+    localStorage.setItem("todos", JSON.stringify(todoArray));
+}
 function handleSubmit(event) {
     event.preventDefault();
     const newTodo = {
@@ -26,13 +29,18 @@ function handleSubmit(event) {
     };
     createTodo(newTodo);
     todoArray.push(newTodo);
-    localStorage.setItem("todos", JSON.stringify(todoArray));
+    saveTodos();
     input.value = "";
 }
 function createTodo(todo) {
     const newLi = document.createElement("li");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener("change", function () {
+        todo.completed = checkbox.checked;
+        saveTodos();
+    });
     newLi.append(todo.text);
     newLi.append(checkbox);
     todoList.append(newLi);
