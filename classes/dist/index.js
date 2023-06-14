@@ -1,10 +1,16 @@
 class Player {
+	static description = "Player In Our Game"; // Exist only on main Player class
 	#score = 0; // Private field
-	numLives = 10;
+	#numLives = 10;
 
 	constructor(first, last) {
 		this.first = first;
 		this.last = last;
+	}
+
+	// Some dumb example
+	static randomPlayer() {
+		return new Player("Random", "Random");
 	}
 
 	get fullName() {
@@ -43,5 +49,14 @@ class Player {
 	}
 }
 
+class SuperPlayer extends Player {
+	isAdmin = true;
+	constructor(first, last, powers) {
+		super(first, last);
+		this.powers = powers;
+	}
+}
+
+const admin = new SuperPlayer("Mr", "Admin", "Flying");
 const playerOne = new Player("Lazar", "Stojanovic");
 const playerTwo = new Player("John", "Doe");
