@@ -20,13 +20,30 @@ class Player {
 class Player {
     first;
     last;
-    score;
+    totalScore;
     // private score = 0;
     isAdmin = false;
-    constructor(first, last, score) {
+    constructor(first, last, totalScore) {
         this.first = first;
         this.last = last;
-        this.score = score;
+        this.totalScore = totalScore;
+    }
+    get fullName() {
+        return `${this.first} ${this.last}`;
+    }
+    set fullName(newName) {
+        const [first, last] = newName.split(" ");
+        this.first = first;
+        this.last = last;
+    }
+    get score() {
+        return this.totalScore;
+    }
+    set score(newScore) {
+        if (newScore < 0) {
+            throw new Error("Score must be positive!");
+        }
+        this.totalScore = newScore;
     }
 }
-const playerOne = new Player("John", "Doggy");
+const playerOne = new Player("John", "Doggy", 100);
