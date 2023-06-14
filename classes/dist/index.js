@@ -20,13 +20,10 @@ class Player {
 class Player {
     first;
     last;
-    totalScore;
-    // private score = 0;
-    isAdmin = false;
-    constructor(first, last, totalScore) {
+    totalScore = 0;
+    constructor(first, last) {
         this.first = first;
         this.last = last;
-        this.totalScore = totalScore;
     }
     get fullName() {
         return `${this.first} ${this.last}`;
@@ -46,4 +43,12 @@ class Player {
         this.totalScore = newScore;
     }
 }
-const playerOne = new Player("John", "Doggy", 100);
+class SuperPlayer extends Player {
+    isAdmin = true;
+    maxScore() {
+        if (this.isAdmin) {
+            this.totalScore = 999999;
+        }
+    }
+}
+const playerOne = new Player("John", "Doggy");

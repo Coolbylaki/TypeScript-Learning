@@ -18,10 +18,9 @@ class Player {
 
 // Shortcut version
 class Player {
-	// private score = 0;
-	private isAdmin = false;
+	protected totalScore = 0;
 
-	constructor(public first: string, public last: string, private totalScore: number) {}
+	constructor(public first: string, public last: string) {}
 
 	get fullName() {
 		return `${this.first} ${this.last}`;
@@ -45,4 +44,14 @@ class Player {
 	}
 }
 
-const playerOne = new Player("John", "Doggy", 100);
+class SuperPlayer extends Player {
+	private isAdmin = true;
+
+	maxScore() {
+		if (this.isAdmin) {
+			this.totalScore = 999999;
+		}
+	}
+}
+
+const playerOne = new Player("John", "Doggy");
