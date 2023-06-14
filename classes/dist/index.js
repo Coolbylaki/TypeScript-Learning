@@ -51,4 +51,23 @@ class SuperPlayer extends Player {
         }
     }
 }
+class Bike {
+    color;
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Jacket {
+    brand;
+    color;
+    constructor(brand, color) {
+        this.brand = brand;
+        this.color = color;
+    }
+    print() {
+        console.log(`${this.color} ${this.brand.toLowerCase()} jacket printed!`);
+    }
+}
 const playerOne = new Player("John", "Doggy");
+const bikeOne = new Bike("Red");
+const jacketOne = new Jacket("Nike", "Blue");
