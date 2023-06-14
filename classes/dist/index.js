@@ -1,5 +1,5 @@
 class Player {
-	score = 0;
+	#score = 0; // Private field
 	numLives = 10;
 
 	constructor(first, last) {
@@ -15,12 +15,20 @@ class Player {
 		this.numLives--;
 		return this.numLives;
 	}
+
+	getScore() {
+		return this.#score;
+	}
+
+	updateScore(newScore) {
+		this.#score = newScore;
+	}
+
+	// Private method
+	#secret() {
+		return "Secret";
+	}
 }
 
 const playerOne = new Player("Lazar", "Stojanovic");
-console.log(playerOne.taunt());
-console.log(playerOne.numLives);
-console.log(playerOne.loseLives());
-
 const playerTwo = new Player("John", "Doe");
-console.log(playerTwo);
