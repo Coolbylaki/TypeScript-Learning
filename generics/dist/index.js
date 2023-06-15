@@ -33,3 +33,10 @@ function getRandomElement(numArray) {
     const randomIndex = Math.floor(Math.random() * (maxIndex + 1));
     return numArray[randomIndex];
 }
+getRandomElement([
+    { name: "John", breed: "Russian blue" },
+    { name: "Marry", breed: "Russian yellow" },
+    { name: "Willard", breed: "Russian red" },
+]);
+// Inferred type
+getRandomElement([1, 2, 3, 4, 5]);
