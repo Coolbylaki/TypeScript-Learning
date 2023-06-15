@@ -40,3 +40,8 @@ getRandomElement([
 ]);
 // Inferred type
 getRandomElement([1, 2, 3, 4, 5]);
+// Generics with multiple types
+function merge(object1, object2) {
+    return Object.assign(Object.assign({}, object1), object2);
+}
+const comboObject = merge({ user: "Lazar", isAdmin: true }, { perms: ["change", "delete"] });

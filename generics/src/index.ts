@@ -56,3 +56,16 @@ getRandomElement<Cat>([
 
 // Inferred type
 getRandomElement([1, 2, 3, 4, 5]);
+
+// Generics with multiple types
+function merge<T, U>(object1: T, object2: U): T & U {
+	return {
+		...object1,
+		...object2,
+	};
+}
+
+const comboObject = merge(
+	{ user: "Lazar", isAdmin: true },
+	{ perms: ["change", "delete"] }
+);
