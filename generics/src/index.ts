@@ -57,8 +57,8 @@ getRandomElement<Cat>([
 // Inferred type
 getRandomElement([1, 2, 3, 4, 5]);
 
-// Generics with multiple types
-function merge<T, U>(object1: T, object2: U): T & U {
+// Generics with multiple types with type constraint
+function merge<T extends object, U extends object>(object1: T, object2: U): T & U {
 	return {
 		...object1,
 		...object2,
@@ -69,3 +69,56 @@ const comboObject = merge(
 	{ user: "Lazar", isAdmin: true },
 	{ perms: ["change", "delete"] }
 );
+
+// Using interface
+function mixCats<T extends Cat, U extends Cat>(catOne: T, catTwo: U) {
+	return {
+		name: catOne.name,
+		breed: catTwo.breed,
+	};
+}
+
+const cats = mixCats(
+	{ name: "John", breed: "Russian Blue" },
+	{ name: "Marry", breed: "Russian red" }
+);
+
+// Default type
+function makeEmptyArray<T = string>(): T[] {
+	return [];
+}
+
+const strings = makeEmptyArray();
+const numbers = makeEmptyArray<number>(); // You can still change it
+
+// Generic classes
+interface Song {
+	title: string;
+	artist: string;
+}
+
+interface Video {
+	title: string;
+	creator: string;
+	resolution: string;
+}
+
+class VideoPlaylist {
+	public videos: Video[] = [];
+}
+
+class SongPlaylist {
+	public songs: Song[] = [];
+}
+
+class Playlist<T> {
+	public queue: T[] = [];
+
+	add(element: T) {
+		this.queue.push(element);
+	}
+}
+
+const songs = new Playlist<Song>();
+
+const videos = new Playlist<Video>();

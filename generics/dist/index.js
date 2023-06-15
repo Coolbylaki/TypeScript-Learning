@@ -40,8 +40,42 @@ getRandomElement([
 ]);
 // Inferred type
 getRandomElement([1, 2, 3, 4, 5]);
-// Generics with multiple types
+// Generics with multiple types with type constraint
 function merge(object1, object2) {
     return Object.assign(Object.assign({}, object1), object2);
 }
 const comboObject = merge({ user: "Lazar", isAdmin: true }, { perms: ["change", "delete"] });
+// Using interface
+function mixCats(catOne, catTwo) {
+    return {
+        name: catOne.name,
+        breed: catTwo.breed,
+    };
+}
+const cats = mixCats({ name: "John", breed: "Russian Blue" }, { name: "Marry", breed: "Russian red" });
+// Default type
+function makeEmptyArray() {
+    return [];
+}
+const strings = makeEmptyArray();
+const numbers = makeEmptyArray(); // You can still change it
+class VideoPlaylist {
+    constructor() {
+        this.videos = [];
+    }
+}
+class SongPlaylist {
+    constructor() {
+        this.songs = [];
+    }
+}
+class Playlist {
+    constructor() {
+        this.queue = [];
+    }
+    add(element) {
+        this.queue.push(element);
+    }
+}
+const songs = new Playlist();
+const videos = new Playlist();
