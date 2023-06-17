@@ -49,3 +49,34 @@ function getRuntime(title: Movie | TVShow): number {
 	}
 	return title.episodeDuration * title.episodeNumber;
 }
+
+// Instanceof narrowing
+function printFullDate(date: Date | string): string {
+	if (date instanceof Date) {
+		return date.toUTCString();
+	}
+	return new Date(date).toUTCString();
+}
+
+// Type predicates specific to TS
+interface Cat {
+	name: string;
+	lives: number;
+}
+
+interface Dog {
+	name: string;
+	breed: string;
+}
+
+// This is TypeScript specific
+function isCat(animal: Cat | Dog): animal is Cat {
+	return (animal as Cat).lives !== undefined;
+}
+
+function makeNoise(animal: Dog | Cat): string {
+	if (isCat(animal)) {
+		return "Meow";
+	}
+	return "Woof";
+}

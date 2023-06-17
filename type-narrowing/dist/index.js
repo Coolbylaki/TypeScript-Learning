@@ -36,3 +36,20 @@ function getRuntime(title) {
     }
     return title.episodeDuration * title.episodeNumber;
 }
+// Instanceof narrowing
+function printFullDate(date) {
+    if (date instanceof Date) {
+        return date.toUTCString();
+    }
+    return new Date(date).toUTCString();
+}
+// This is TypeScript specific
+function isCat(animal) {
+    return animal.lives !== undefined;
+}
+function makeNoise(animal) {
+    if (isCat(animal)) {
+        return "Meow";
+    }
+    return "Woof";
+}
