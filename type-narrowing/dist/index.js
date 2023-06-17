@@ -24,3 +24,15 @@ const printLetters = (word) => {
         console.log("You did not pass in a word!");
     }
 };
+// Equality narrowing
+function someDemo(x, y) {
+    if (x === y) {
+        return x.concat(y); // Both are strings
+    }
+}
+function getRuntime(title) {
+    if ("duration" in title) {
+        return title.duration;
+    }
+    return title.episodeDuration * title.episodeNumber;
+}

@@ -23,3 +23,29 @@ const printLetters = (word?: string) => {
 		console.log("You did not pass in a word!");
 	}
 };
+
+// Equality narrowing
+function someDemo(x: string | number, y: string | boolean) {
+	if (x === y) {
+		return x.concat(y); // Both are strings
+	}
+}
+
+// In operator narrowing
+interface Movie {
+	title: string;
+	duration: number;
+}
+
+interface TVShow {
+	title: string;
+	episodeNumber: number;
+	episodeDuration: number;
+}
+
+function getRuntime(title: Movie | TVShow): number {
+	if ("duration" in title) {
+		return title.duration;
+	}
+	return title.episodeDuration * title.episodeNumber;
+}
