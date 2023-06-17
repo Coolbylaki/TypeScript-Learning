@@ -1,4 +1,7 @@
-export default class User {
+//TS ONLY
+import { type Person } from "./types";
+
+export default class User implements Person {
 	constructor(public username: string, public email: string) {}
 
 	logout(): void {
