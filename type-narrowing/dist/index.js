@@ -53,3 +53,10 @@ function makeNoise(animal) {
     }
     return "Woof";
 }
+function getFarmAnimal(animal) {
+    if (animal.kind === "rooster")
+        return "It's a rooster!";
+    if (animal.kind === "cow")
+        return "It's a cow!";
+    return "It's a pig!";
+}

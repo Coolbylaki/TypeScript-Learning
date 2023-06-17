@@ -80,3 +80,35 @@ function makeNoise(animal: Dog | Cat): string {
 	}
 	return "Woof";
 }
+
+// Discriminated unions
+interface Rooster {
+	kind: "rooster";
+	name: string;
+	weight: number;
+	age: number;
+}
+
+interface Cow {
+	kind: "cow";
+	name: string;
+	weight: number;
+	age: number;
+}
+
+interface Pig {
+	kind: "pig";
+	name: string;
+	weight: number;
+	age: number;
+}
+
+type FarmAnimal = Pig | Rooster | Cow;
+
+function getFarmAnimal(animal: FarmAnimal): string {
+	if (animal.kind === "rooster") return "It's a rooster!";
+
+	if (animal.kind === "cow") return "It's a cow!";
+
+	return "It's a pig!";
+}
