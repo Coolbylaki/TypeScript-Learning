@@ -1,25 +1,33 @@
 import { FormEvent, useRef } from "react";
 
 interface ShoppingListFormProps {
-	onAddItem: (product: string) => void;
+	onAddItem: (product: string, quantity: number) => void;
 }
 
 const ShoppingListForm = ({ onAddItem }: ShoppingListFormProps): JSX.Element => {
-	const inputRef = useRef<HTMLInputElement>(null);
+	const productRef = useRef<HTMLInputElement>(null);
+	const quantityRef = useRef<HTMLInputElement>(null);
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
-		if (inputRef.current?.value) {
-			const product = inputRef.current.value;
-			onAddItem(product);
-			return (inputRef.current.value = "");
+		if (productRef.current?.value && quantityRef.current?.value) {
+			const product = productRef.current.value;
+			const quantity = parseInt(quantityRef.current.value);
+
+			onAddItem(product, quantity);
+
+			productRef.current.value = "";
+			quantityRef.current.value = "1";
+
+			return;
 		}
-		throw new Error("Invalid Item!");
+		alert("Please enter a valid product");
 	};
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<input ref={inputRef} type="text" placeholder="Product Name" />
+			<input ref={productRef} type="text" placeholder="Product Name" />
+			<input type="number" min={1} ref={quantityRef} defaultValue={1} />
 			<button type="submit">Add Item</button>
 		</form>
 	);
