@@ -103,12 +103,29 @@ interface Pig {
 	age: number;
 }
 
-type FarmAnimal = Pig | Rooster | Cow;
+interface Sheep {
+	kind: "sheep";
+	name: string;
+	weight: number;
+	age: number;
+}
 
+type FarmAnimal = Pig | Rooster | Cow | Sheep;
+
+// Add exhaustive check
 function getFarmAnimal(animal: FarmAnimal): string {
-	if (animal.kind === "rooster") return "It's a rooster!";
-
-	if (animal.kind === "cow") return "It's a cow!";
-
-	return "It's a pig!";
+	switch (animal.kind) {
+		case "pig":
+			return "It's a pig!";
+		case "cow":
+			return "It's a cow!";
+		case "rooster":
+			return "It's a rooster!";
+		case "sheep":
+			return "It's a rooster!";
+		default:
+			// We should never make it here, if we handled cases correctly
+			const _exhaustiveCheck: never = animal;
+			return _exhaustiveCheck;
+	}
 }
